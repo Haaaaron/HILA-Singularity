@@ -1,29 +1,43 @@
-# README #
+# HILAPP singularity container #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Definition file for HILA pre-processor [singularity](https://sylabs.io/singularity/) container. This container is meant to be a portable solution for compiling the first half of hila code which is the parsing for specific architectures.
 
-### What is this repository for? ###
+Singularity is a tailor made containerizing software often supported by HPC platforms such as CSC supercomputers.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Quick start ##
 
-### How do I get set up? ###
+### 1. Installing singularity ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Install singularity either from source of via any given package manager which is supported. Documentation can be found on the [GitHub page](https://github.com/sylabs/singularity)
 
-### Contribution guidelines ###
+You can simply download latest .deb or .rpm from github [release page](https://github.com/sylabs/singularity/releases) and install directly with package manager
 
-* Writing tests
-* Code review
-* Other guidelines
+Ubuntu:
+```
+dpkg -i singularity-ce_$(SINGULARITY_VERSION)-$(UBUNTU_VERSION)_amd64.deb
+```
 
-### Who do I talk to? ###
+### 2. Building singularity container ###
 
-* Repo owner or admin
-* Other community or team contact
+Note: sudo privileges are necessary for building singularity containers
+
+Download copy of hila into current working directory
+
+```
+git clone git@bitbucket.org:Kari_Rummukainen/hila.git
+```
+
+Build singularity container
+
+```
+sudo singularity build hilapp hilapp.def
+```
+
+Now the hilapp file will act as a singularity container and equivalently as the hilapp binary and can be used as such when pre processing HILA code. Thus you can move it to your HILA projects bin folder
+
+```
+mkdir hila/ihlapp/bin
+mv hilapp hila/hilapp/bin
+```
+
+
