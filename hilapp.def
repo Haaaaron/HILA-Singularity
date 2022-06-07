@@ -1,0 +1,31 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+%files
+    #copying full hila directory in current path
+    ./hila
+
+%post
+    export LLVM_VERSION=12
+    apt-get -y update
+    apt-get -y install make libfftw3-dev
+    #installing clang devel tools
+    apt-get -y install clang-$LLVM_VERSION \
+                       llvm-$LLVM_VERSION \
+                       clang-tools-$LLVM_VERSION \
+                       libclang-common-$LLVM_VERSION-dev \
+                       libclang-cpp$LLVM_VERSION-dev \
+                       libclang-$LLVM_VERSION-dev \
+                       clang-format-$LLVM_VERSION
+
+    cd hila/hilapp
+    make -j4
+    mv build/hilapp /
+    cd /
+    rm -rf hila
+
+%environment
+    export LLVM_VERSION=12
+
+%runscript
+    /hilapp $@
