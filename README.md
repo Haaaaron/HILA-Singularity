@@ -40,4 +40,10 @@ mkdir hila/ihlapp/bin
 mv hilapp hila/hilapp/bin
 ```
 
+### 3. Using the singulartiy container ###
+
+Now one can simply move the singularity container to any give supercomputer. Note that on supercomputers the default paths aren't the same as on default linux operating systems. Thus one will need to mount their hila source folder to singularity using the APPTAINER_BIND environment variable. Simple navigate to the base of your hila source directory and run
+
+    export APPTAINER_BIND=$(pwd)
+
 
