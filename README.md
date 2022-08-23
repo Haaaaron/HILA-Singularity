@@ -4,7 +4,9 @@ Definition file for HILA pre-processor [singularity](https://sylabs.io/singulari
 
 Singularity is a tailor made containerizing software often supported by HPC platforms such as CSC supercomputers.
 
-## Quick start ##
+One can download the singularity container hilapp.sif directly from this github repositories release page or build it from scratch. If downloaded skip directly to **Using singulartiy container** section.
+
+## Building container from scratch ##
 
 ### 1. Installing singularity ###
 
@@ -33,16 +35,18 @@ Build singularity container
 sudo singularity build hilapp hilapp.def
 ```
 
-Now the hilapp file will act as a singularity container and equivalently as the hilapp binary and can be used as such when pre processing HILA code. Thus you can move it to your HILA projects bin folder
+## Using singulartiy container ##
+
+The hilapp.sif file will act as a singularity container and equivalently as the hilapp binary and can be used as such when pre processing HILA code. Thus you can move it to your HILA projects bin folder
 
 ```
 mkdir HILA/hilapp/bin
-mv hilapp HILA/hilapp/bin
+mv hilapp.sif HILA/hilapp/bin/hilapp
 ```
 
-### 3. Using the singulartiy container ###
+Now one can simply move the singularity container to any give supercomputer. 
 
-Now one can simply move the singularity container to any give supercomputer. Note that on supercomputers the default paths aren't the same as on default linux operating systems. Thus one will need to mount their HILA source folder to singularity using the APPTAINER_BIND environment variable. Simple navigate to the base of your HILA source directory and run
+Note that on supercomputers the default paths aren't the same as on default linux operating systems. Thus one will need to mount their HILA source folder to singularity using the APPTAINER_BIND environment variable. Simple navigate to the base of your HILA source directory and run
 
     export APPTAINER_BIND=$(pwd)
 
